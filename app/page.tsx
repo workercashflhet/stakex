@@ -1,20 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { retrieveLaunchParams } from '@tma.js/sdk';
+import { retrieveLaunchParams, type User } from '@tma.js/sdk';
 import DiceGame from '../components/DiceGame';
 import SlotsGame from '../components/SlotsGame';
 import { getUserBalance, updateUserBalance } from '../lib/db';
 
 export default function Home() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [balance, setBalance] = useState(1000);
 
   useEffect(() => {
     const launchParams = retrieveLaunchParams();
-    if (launchParams.initData?.user) {
-      setUser(launchParams.initData.user);
-      const userBalance = getUserBalance(launchParams.initData.user.id.toString());
+    if ((launchParams.initData as any)?.user) {
+      setUser((launchParams.initData as any).user);
+      const userBalance = getUserBalance((launchParams.initData as any).user.id.toString());
       setBalance(userBalance);
     }
   }, []);
@@ -42,7 +42,7 @@ export default function Home() {
       <header className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">StakeX</h1>
         <div className="text-right">
-          <p>{user.firstName} {user.lastName}</p>
+          <p>{user.first_name} {user.last_name}</p>
           <p>Balance: {balance} coins</p>
         </div>
       </header>
