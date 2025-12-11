@@ -21,6 +21,8 @@ A Telegram Mini App casino game built with Next.js and Telegram SDK.
 
 Deploy to Vercel for easy hosting.
 
+Updated for Vercel build fix.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
